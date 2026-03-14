@@ -1,19 +1,5 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import FeaturedPosts from "./components/FeaturedPosts";
-import FaqSection from "./components/FaqSection";
-import GetListed from "./components/GetListed";
-import Footer from "./components/Footer";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <>
-      <Header />
-      <Hero />
-      <FeaturedPosts />
-      <FaqSection />
-      <GetListed />
-      <Footer />
-    </>
-  );
+export default function HomePage() {
+  redirect("/blog");
 }
