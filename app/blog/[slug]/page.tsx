@@ -1,3 +1,5 @@
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug } from "../../lib/wordpress";
@@ -32,161 +34,167 @@ export default async function SingleBlogPostPage({
   const author = post._embedded?.author?.[0]?.name || "Admin";
 
   return (
-    <main
-      style={{
-        backgroundColor: "#ffffff",
-        minHeight: "100vh",
-        padding: "40px 20px 80px",
-      }}
-    >
-      <div
+    <>
+      <Header />
+
+      <main
         style={{
-          maxWidth: "860px",
-          margin: "0 auto",
+          backgroundColor: "#ffffff",
+          minHeight: "100vh",
+          padding: "40px 20px 80px",
         }}
       >
-        <div style={{ marginBottom: "28px" }}>
-          <Link
-            href="/blog"
-            style={{
-              fontSize: "15px",
-              color: "#6b7280",
-              textDecoration: "none",
-              fontWeight: 500,
-            }}
-          >
-            ← Back to articles
-          </Link>
-        </div>
-
-        <h1
-          style={{
-            fontSize: "48px",
-            lineHeight: "1.15",
-            fontWeight: 800,
-            color: "#111827",
-            margin: "0 0 18px",
-          }}
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
-
         <div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "12px",
-            alignItems: "center",
-            color: "#6b7280",
-            fontSize: "15px",
-            marginBottom: "30px",
+            maxWidth: "860px",
+            margin: "0 auto",
           }}
         >
-          <span>{formatDate(post.date)}</span>
-          <span>•</span>
-          <span>By {author}</span>
-        </div>
+          <div style={{ marginBottom: "28px" }}>
+            <Link
+              href="/blog"
+              style={{
+                fontSize: "15px",
+                color: "#6b7280",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              ← Back to articles
+            </Link>
+          </div>
 
-        {featuredImage ? (
-          <img
-            src={featuredImage}
-            alt={featuredAlt}
+          <h1
             style={{
-              width: "100%",
-              height: "auto",
-              borderRadius: "22px",
-              display: "block",
-              marginBottom: "34px",
+              fontSize: "48px",
+              lineHeight: "1.15",
+              fontWeight: 800,
+              color: "#111827",
+              margin: "0 0 18px",
             }}
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           />
-        ) : (
+
           <div
             style={{
-              width: "100%",
-              height: "320px",
-              borderRadius: "22px",
-              backgroundColor: "#f3f4f6",
               display: "flex",
+              flexWrap: "wrap",
+              gap: "12px",
               alignItems: "center",
-              justifyContent: "center",
               color: "#6b7280",
-              fontSize: "20px",
-              fontWeight: 600,
-              marginBottom: "34px",
+              fontSize: "15px",
+              marginBottom: "30px",
             }}
           >
-            No Image Available
+            <span>{formatDate(post.date)}</span>
+            <span>•</span>
+            <span>By {author}</span>
           </div>
-        )}
 
-        <style>
-          {`
-            article h2 {
-              font-size: 32px;
-              line-height: 1.3;
-              font-weight: 800;
-              color: #111827;
-              margin-top: 42px;
-              margin-bottom: 16px;
-            }
+          {featuredImage ? (
+            <img
+              src={featuredImage}
+              alt={featuredAlt}
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "22px",
+                display: "block",
+                marginBottom: "34px",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "320px",
+                borderRadius: "22px",
+                backgroundColor: "#f3f4f6",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#6b7280",
+                fontSize: "20px",
+                fontWeight: 600,
+                marginBottom: "34px",
+              }}
+            >
+              No Image Available
+            </div>
+          )}
 
-            article h3 {
-              font-size: 26px;
-              line-height: 1.35;
-              font-weight: 700;
-              color: #111827;
-              margin-top: 34px;
-              margin-bottom: 14px;
-            }
+          <style>
+            {`
+              article h2 {
+                font-size: 32px;
+                line-height: 1.3;
+                font-weight: 800;
+                color: #111827;
+                margin-top: 42px;
+                margin-bottom: 16px;
+              }
 
-            article p {
-              margin-bottom: 20px;
-            }
+              article h3 {
+                font-size: 26px;
+                line-height: 1.35;
+                font-weight: 700;
+                color: #111827;
+                margin-top: 34px;
+                margin-bottom: 14px;
+              }
 
-            article ul,
-            article ol {
-              margin-bottom: 20px;
-              padding-left: 24px;
-            }
+              article p {
+                margin-bottom: 20px;
+              }
 
-            article li {
-              margin-bottom: 10px;
-            }
+              article ul,
+              article ol {
+                margin-bottom: 20px;
+                padding-left: 24px;
+              }
 
-            article img {
-              max-width: 100%;
-              height: auto;
-              border-radius: 18px;
-              margin: 24px 0;
-            }
+              article li {
+                margin-bottom: 10px;
+              }
 
-            article a {
-              color: #2563eb;
-              text-decoration: underline;
-            }
+              article img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 18px;
+                margin: 24px 0;
+              }
 
-            article blockquote {
-              border-left: 4px solid #d1d5db;
-              padding-left: 18px;
-              margin: 24px 0;
-              color: #4b5563;
-              font-style: italic;
-            }
+              article a {
+                color: #2563eb;
+                text-decoration: underline;
+              }
 
-            article strong {
-              color: #111827;
-            }
-          `}
-        </style>
+              article blockquote {
+                border-left: 4px solid #d1d5db;
+                padding-left: 18px;
+                margin: 24px 0;
+                color: #4b5563;
+                font-style: italic;
+              }
 
-        <article
-          style={{
-            fontSize: "18px",
-            lineHeight: "1.9",
-            color: "#1f2937",
-          }}
-          dangerouslySetInnerHTML={{ __html: post.content?.rendered || "" }}
-        />
-      </div>
-    </main>
+              article strong {
+                color: #111827;
+              }
+            `}
+          </style>
+
+          <article
+            style={{
+              fontSize: "18px",
+              lineHeight: "1.9",
+              color: "#1f2937",
+            }}
+            dangerouslySetInnerHTML={{ __html: post.content?.rendered || "" }}
+          />
+        </div>
+      </main>
+
+      <Footer />
+    </>
   );
 }
